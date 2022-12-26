@@ -1,0 +1,413 @@
+
+
+javscript is dynamic language bcz during runtime it can become stringinto number or vice versa.
+
+use strict 
+ it is directive which strictley check the whether varibles are decleared with var and let keyword
+
+clousers
+ clousers are the function can return another function and also it access the varibles which are declared outer scope.
+
+ex:function userInfo(){
+let name = "Rahul";
+	 function display(){
+  		console.log(name);
+  }
+  display();
+}
+
+userInfo();
+    
+n JavaScript, closures are the primary mechanism used to enable data privacy.
+
+using clousers we achiebve the self contained fun or self contained code or self contained state.  
+using clousers we achieve absraction.mean which fun we want to expose that functn can we returned.
+
+ function clouserFun(){
+   var x;
+  function increment(){
+	x++;
+  }
+  function decrement(){
+      x--;
+  }
+  
+  function getValue(){
+	return x;	
+  }
+
+  function init(){
+	x = 0; 
+  }	
+  
+   init();//private to the clouser
+return {
+  increment:increment,
+  getValue:getValue,
+  decrement:decrement,
+}
+
+ } 
+
+let ref = clouserFun();
+
+ref.increment();
+const value = ref.getValue();
+console.log("The cur value",value)
+ref.decrement();
+
+
+IIFE(Immediately invoked function expression)
+	 it is an anonymous funct(funct not have name) which gets immeditely invoked.
+	any kind of var we create that is local to the function which cant be accessed outside.
+
+(function(){
+  var a = 10;
+  console.log("This is iffe function",a);//10
+})()
+console.log("This is outside iffe",a);//error
+
+Bcz of these reasons we use iife
+
+Name collsion : to aviod the name collsion(same names are used for funct decl and declaring var);
+
+
+What are the ways we create the objects
+
+1)using literal
+
+let userInfo = {name:'Rahul',age:89}
+
+userInfo.getInfo  = function(){
+	return name + and age is + age;
+}
+
+2)using Object.create()
+	using instance of the cur project we create the new object;
+	ex: person = {name:'rahul'} 
+   let userInfo = Object.create(person);
+	userInfo.age = 90;
+	console.log(userInfo);
+
+3)using the javascript new keyword
+	const person = new Object()
+	person.firstname = 'anil'
+	person.age = 89;
+
+4) using constructor
+	function person(firstname,age){
+		this.firstname = firstname;
+		this.age = age;
+	}
+
+	let myName = new Person("Rahul",90);
+console.log("my name info",myName)
+
+
+10) How can we do inheritance in javscript?
+
+javsript uses the object inheritance and inheritance is done using prototype object.
+
+using inheritance the child object can get the properties and methods from the parent object using prototype.
+function Employee(){
+  this.name = '',
+  this.doWork = function(){
+    console.log("employee team");
+  }
+}
+
+function Manger(){
+  this.name = '',
+  this.doWork = function(){
+    console.log("manger team");
+  }
+}
+const emp = new Employee();
+Manger.prototype = emp;//now manger is child so inherit the properties nad methods from parent
+const man = new Manger();
+man.name ='rahul';
+man.doWork();
+
+Every object have prototype obj.it is inbuilt provided by js
+
+ex2:: let myarr = [];
+myArr.push(2); //since myArr is arr which not have the push method so it wil check the its prototype there is push method bcz everything in js is Object.
+
+Prototype chaining : it will seacrh the method first in the current object if not then it go to the its prototype and check the method then it will do same thing untill we need the required funct so this will form chaning .
+
+if required funct is not getting it will throw an exeption.
+
+11)what is Let keyword
+
+introduced in es6;
+which is blockscope;
+
+12)are let varibles are hoisted?/
+console.log(y); //undefined;
+console.log(x);//getting initizalition err
+let x = 10;
+var y = 20;  
+
+varibles are hoisted but not initialize assignment so we get undefined.
+but the when varible are declared with let keyword are hoisted but getting initialization error.
+
+Explain Temporal Dead Zone??
+	when varible are declared with let keyword are hoisted but varibles are not initialized then we get into exception 
+like access of X before initilization	
+
+
+console.log(x); //access of X before initilization
+let x = 10;
+
+14)differ bw Let and Var
+
+SO LET is very strict in terms of scoping and initizalition. 
+
+1)during hositing how their initialized value = 
+
+   value initialized with undefined in var 
+   value initialized with nothing in let
+2)scope
+	let is block scope
+	var is function scope 
+ex;
+function getValue(){
+  
+  if(true){
+      let x = 10;
+      var y = 20;
+  }
+  console.log(x);//getting err 
+  console.log(y);//20
+}
+
+getValue();
+
+
+18)
+console.log("9">"19"); //return true bcz left operand of 1st bit compared with 1st bit of another operand
+console.log("9">19);//return false difer types are converted into numbers
+console.log("">-1);//true bcz empty str is converted into 0 since 0>-1;
+console.log("Rowdy" > 1);//here Rowdy is NaN which is eeither greater or less oe equal to any num;
+console.log(undefined === undefined) //true 
+
+19)spread operator do only the shallow copy not deep copy 
+
+20)In js Objects are compared based on reference 
+
+
+21)Funtcion currying
+
+	=> techinque to trasnform the funton of argumntes
+ ex:
+	function add(a){
+		return function(b){
+			return a+b
+             }
+
+        }
+	add(2)(7)
+By using the currying technique, we do not change the functionality of a function, we just change the way it is invoked.
+
+22)Explain Scope and Scope Chain
+
+	scope is accessblity of varibles and functions at various parts of the code
+	3 type 1)Global scope=available throught the code
+	       2)Funtcion scope = available in the function code
+		3)Block scope = available within the block
+scope chain : the js engine if dosnt find the var in the local scope it tries to check the var in the outer scope even if var doesnt exist in the outer scope it checks in the global scope.
+
+23)Explain the clousers
+	it is  ablity of funtn to remeber the var even var are declared in its outer scope.
+
+24)What are object prototypes?
+	all js objects inherit the propert from prototype.
+	Date objects inherit the props from Date prototype.
+	Math Objects and array Obejts inherit the props from Math and Arr prototype.
+
+   arrow functn are how different from another functtion
+	In arrow fucnt THIS keyword refres to the window object;
+
+27)Implemet the memorization?
+	function memo(num1,num2){
+		let myObj = {}
+		
+			
+		return num1+num2
+      }
+
+	let result = memo(10,10);
+	console.log(result);	
+
+28)setTimeout??
+	it is part of the web not in js
+
+29)Infinte currying 
+	function add(a){
+		return function(b){
+			if(b) return add(a+b)
+			 return a;
+
+			}
+        }
+		console.log(add(2)(2)(3)())//7
+		console.log(add(3)(9)())//12
+
+30)Implement this code
+	const result = calc.add(10).multiply(20);
+	console.log(result.total)
+
+	function calc()
+
+31)Differnce between call appy and bind method
+
+	let person = {
+    name:'rohan',
+}
+
+let personOne = {
+    name:'John'
+}
+
+function getFullName(lastname,state) {
+    console.log(this.name + ' ' +lastname+' '+state)
+}
+
+
+getFullName.call(person,'MK','KAR'); // we directly invoke the fun and make reusable that funt for differnt objets and also we pass the argu indivdully
+getFullName.apply(person,['JK','MUM']); // we directly invoke the fun and make reusable that funt for differnt objets and also we pass the argu using array
+
+const fullName = getFullName.bind(personOne);//instaed of directly invoking the funct we return the funct 
+  (like copy the funct with respective to diffe object) and invoke whenever we want 
+
+fullName('KL','KL');
+
+
+32)Async and defer attr
+	When we loading web page 2 things happens one is html parsing and loading of script
+	and loading of script contains 2 parts one is fetching the script from netwrok and actually excuting the script from line by line
+
+	** in normal scrpt the html is parsing and encouters the script tag what heepen is browse stops the parsing at that time
+        and fetch the scipt from network and starts excuting after html parse is carried.
+
+	**In async attr html parsing is carried along with the fetch the scipt from network asynchly once it fetches the scripts and script starts ecusting that time html parse is paused and afetr completly excution of script the html parsing is started.
+
+	**In defer html parsing goes on and script tag fetching parally and html parsing still continues after it completed scrpt statrs excuting  
+
+
+33)Aynchrnous and Event Loop 
+	Js is single threaded it do only one task at a time.bcz it have only one call stack this is present in Js engine all the js code is excuted on this call stack
+
+Browsser containes the local storage, timers also makes help to connect with external world using url(http) and render Ui to see the videos,phots,geoLocation access, these are the not part of js. so how to connect with this js to browser to get these things
+
+to access all these methods to js using web API's like setTimeout(),Dom API,fetch(),localStorage,console.log,location
+
+console.log("Statrt");
+setTimeout(()=>{
+console.log("middle")
+},3000);
+console.log(end);
+all js code is excuted on the call statck other than the  web related funct like mentioned above. the call back funct registers in the web Api part
+after call stack excutes 2 console log it will see the callback queue where callbackfunct is pushed from the web after some sceconds and this callback quues is pushed that funct into call stack throigh the EVENT LOOP so this event loop continuosly moniters the callback queue and call stack.and this call stack excutes immeditely.
+
+event loop continously checks the call stck is empty or not if it is empty it will check with callbacck queueand micro task queue.
+
+Here is how call back que is work with promises call back and setTimeout calll back  
+
+the function which return the promises are stored on the micro task quue which is same like  call back queue.but the micro stack quue is very high proority.so if any call back funct are present in the micro task que and call back that is pushed into the call stack for further exxcution.
+
+console.log("start");
+
+setTimeout(function() {
+    console.log("Inside timout hello");
+},4000);
+
+fetch('http://netflix.com').then(
+    fuction(res){
+        console.log("Response from fetch");
+    }
+)
+
+console.log("End");
+
+
+**all callback funct which are from the promises are stored on the micro task queue. 
+other call funct are go into the callback quque.
+
+
+callback hell:
+   callback hell is nested callbacks which are statcked one above the another. and evvery callback depends/waits for the previous call back. that wiill afftets  the readblity and maintablity of the code.
+
+using async and await we aviod the call back hell. 
+
+
+difference bw shallow copy and deep copy 
+
+
+Shallow copy
+ while copy the one object data into anothr object duirng shaallow copy bot objects are pointing to the same ref or pointint to same memory.
+ so if anything change in one obje it will affect in the another object.
+
+	let obj1 = {name:'anil',age:90}
+	let obj2 = obj1;
+         obj2.name = 'Rahul';
+ it also effects in the obj1;
+
+
+Deep copy;
+	 while copy the one object data into anothr object duirng deep copy both objects are pointing to the diffe ref or pointint to diff memory.
+so if anything change in one obje it will not affect in the another object.
+
+	let obj1 = {name:'anil',age:90}
+	let obj2 = {...obj1};	
+        obj2.name = 'Rahul';
+  bcz of deep copy both obj1 and obj2 pointing to differnt objects;
+
+
+What is the use of arrow function 
+
+Arrow functions were introduced in ES6.
+
+Arrow functions allow us to write shorter function syntax:
+helps to rediuce the appli memory cosnsumption.
+Reducing the CPU time required to itreate the over loops/;
+
+The handling of this is also different in arrow functions compared to regular functions.
+In short, with arrow functions there are no binding of this.
+In regular functions the this keyword represented the object that called the function,
+With arrow functions the this keyword always represents the window object 
+
+
+
+what are the first class functions
+	these are the function which we used like var mean we pass the funt as parametr and return the funct
+
+
+what is debounce?
+	after type we wait some milliseconds after that the only results are fetched.
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+	
